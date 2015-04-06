@@ -31,7 +31,8 @@ std::string Soundex::encodedDigit(char letter) const
         {'r', "6"}
     };
 
-    return encodings.find(letter)->second;
+    auto it = encodings.find(letter);
+    return it == encodings.end() ? "" : it->second;
 }
 
 static const size_t MaxCodeLength = 4;
