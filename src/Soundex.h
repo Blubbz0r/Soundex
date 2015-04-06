@@ -18,8 +18,9 @@ private:
     std::string encodedDigits(const std::string& word) const;
     void encodeHead(std::string& encoding, const std::string& word) const;
     void encodeTail(std::string& encoding, const std::string& word) const;
-    void encodeLetter(std::string& encoding, char letter) const;
     bool isComplete(const std::string& encoding) const;
+    void encodeLetter(std::string& encoding, char letter, char lastLetter) const;
+    bool isVowel(char letter) const;
     std::string lastDigit(const std::string& encoding) const;
     std::string zeroPad(const std::string& word) const;
 };
