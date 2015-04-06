@@ -11,6 +11,7 @@ public:
     std::string encodedDigit(char letter) const;
 
 private:
+    std::string upperFront(const std::string& string) const;
     std::string head(const std::string& word) const;
     std::string tail(const std::string& word) const;
     std::string encodedDigits(const std::string& word) const;

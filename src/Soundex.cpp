@@ -1,14 +1,19 @@
 #include "Soundex.h"
 
+#include <cctype>
 #include <unordered_map>
 
 static const size_t MaxCodeLength = 4;
 
 std::string Soundex::encode(const std::string& word) const
 {
-    return zeroPad(head(word) + encodedDigits(tail(word)));
+    return zeroPad(upperFront(head(word)) + encodedDigits(tail(word)));
 }
 
+std::string Soundex::upperFront(const std::string& string) const
+{
+    return std::string(1, std::toupper(static_cast<unsigned char>(string.front())));
+}
 std::string Soundex::head(const std::string& word) const
 {
     return word.substr(0, 1);
