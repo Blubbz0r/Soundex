@@ -4,7 +4,7 @@
 
 std::string Soundex::encode(const std::string& word) const
 {
-    return zeroPad(head(word) + encodedDigits(word));
+    return zeroPad(head(word) + encodedDigits(tail(word)));
 }
 
 std::string Soundex::head(const std::string& word) const
@@ -12,11 +12,17 @@ std::string Soundex::head(const std::string& word) const
     return word.substr(0, 1);
 }
 
+std::string Soundex::tail(const std::string& word) const
+{
+    return word.substr(1);
+}
+
 std::string Soundex::encodedDigits(const std::string& word) const
 {
-    if (word.length() > 1)
-        return encodedDigit(word[1]);
-    return "";
+    std::string encoding;
+    for (auto letter : word)
+        encoding += encodedDigit(letter);
+    return encoding;
 }
 
 std::string Soundex::encodedDigit(char letter) const
