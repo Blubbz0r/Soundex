@@ -3,17 +3,20 @@
 #include "Soundex.h"
 
 using testing::Eq;
+using testing::Test;
 
-TEST(SoundexEncoding, RetainsSoleLetterOfOneLetterWord)
+class SoundexEncoding : public Test
 {
+public:
     Soundex soundex;
-    auto encoded = soundex.encode("A");
-    ASSERT_THAT(encoded, Eq("A000"));
+};
+
+TEST_F(SoundexEncoding, RetainsSoleLetterOfOneLetterWord)
+{
+    ASSERT_THAT(soundex.encode("A"), Eq("A000"));
 }
 
-TEST(SoundexEncoding, PadsWithZerosToEnsureThreeDigits)
+TEST_F(SoundexEncoding, PadsWithZerosToEnsureThreeDigits)
 {
-    Soundex soundex;
-    auto encoded = soundex.encode("I");
-    ASSERT_THAT(encoded, Eq("I000"));
+    ASSERT_THAT(soundex.encode("I"), Eq("I000"));
 }
