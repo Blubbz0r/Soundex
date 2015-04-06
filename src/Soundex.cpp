@@ -24,10 +24,15 @@ std::string Soundex::encodedDigits(const std::string& word) const
     std::string encoding;
     for (auto letter : word)
     {
-        if (encoding.length() == MaxCodeLength - 1) break;
+        if (isComplete(encoding)) break;
         encoding += encodedDigit(letter);
     }
     return encoding;
+}
+
+bool Soundex::isComplete(const std::string& encoding) const
+{
+    return encoding.length() == MaxCodeLength - 1;
 }
 
 std::string Soundex::encodedDigit(char letter) const
@@ -51,3 +56,4 @@ std::string Soundex::zeroPad(const std::string& word) const
     auto zerosNeeded = MaxCodeLength - word.length();
     return word + std::string(zerosNeeded, '0');
 }
+
