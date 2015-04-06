@@ -32,15 +32,29 @@ std::string Soundex::tail(const std::string& word) const
 
 std::string Soundex::encodedDigits(const std::string& word) const
 {
-    auto encoding = encodedDigit(word.front());
-    for (auto letter : word)
-    {
-        if (isComplete(encoding)) break;
-        auto digit = encodedDigit(letter);
-        if (digit != NotADigit && digit != lastDigit(encoding))
-            encoding += digit;
-    }
+    std::string encoding;
+    encodeHead(encoding, word);
+    encodeTail(encoding, word);
     return encoding;
+}
+
+void Soundex::encodeHead(std::string& encoding, const std::string& word) const
+{
+    encoding += encodedDigit(word.front());
+}
+
+void Soundex::encodeTail(std::string& encoding, const std::string& word) const
+{
+    for (auto letter : tail(word))
+        if (!isComplete(encoding))
+            encodeLetter(encoding, letter);
+}
+
+void Soundex::encodeLetter(std::string& encoding, char letter) const
+{
+    auto digit = encodedDigit(letter);
+    if (digit != NotADigit && digit != lastDigit(encoding))
+        encoding += digit;
 }
 
 bool Soundex::isComplete(const std::string& encoding) const
