@@ -1,6 +1,1 @@
-ext/gmock/tmp/googlemock-cfgcmd.txt.in
-ext/gmock/tmp/googlemock-cfgcmd.txt
-ext/gmock/src/googlemock-stamp/googlemock-svninfo.txt
-ext/gmock/src/googlemock-stamp/googlemock-download.cmake
-ext/gmock/src/googlemock-stamp/googlemock-configure.cmake
-ext/gmock/src/googlemock-stamp/googlemock-build.cmake
+ext

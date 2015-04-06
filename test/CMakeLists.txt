@@ -1,7 +1,8 @@
 include_directories(${source_dir}/include)
 include_directories(${source_dir}/gtest/include)
+include_directories(${PROJECT_SOURCE_DIR}/src)
 
-add_executable(${PROJECT_NAME}Test main.cpp)
+add_executable(${PROJECT_NAME}Test main.cpp SoundexTest.cpp ${PROJECT_SOURCE_DIR}/src/Soundex.h)
 add_dependencies(${PROJECT_NAME}Test googlemock)
 
 target_link_libraries(${PROJECT_NAME}Test

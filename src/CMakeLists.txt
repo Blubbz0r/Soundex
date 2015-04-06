@@ -1,1 +1,1 @@
-add_library(${PROJECT_NAME} main.cpp)
+add_library(${PROJECT_NAME} Soundex.h Soundex.cpp)
