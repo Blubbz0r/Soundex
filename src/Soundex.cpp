@@ -1,10 +1,6 @@
-#include <iostream>
+#include "Soundex.h"
 
-using namespace std;
-
-int main()
+std::string Soundex::encode(const std::string& word) const
 {
-    cout << "Hello World!" << endl;
-    return 0;
+    return word;
 }
-
