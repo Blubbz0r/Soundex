@@ -4,6 +4,7 @@
 #include <unordered_map>
 
 static const size_t MaxCodeLength = 4;
+static const std::string NotADigit = "*";
 
 std::string Soundex::encode(const std::string& word) const
 {
@@ -30,8 +31,9 @@ std::string Soundex::encodedDigits(const std::string& word) const
     for (auto letter : word)
     {
         if (isComplete(encoding)) break;
-        if (encodedDigit(letter) != lastDigit(encoding))
-            encoding += encodedDigit(letter);
+        auto digit = encodedDigit(letter);
+        if (digit != NotADigit && digit != lastDigit(encoding))
+            encoding += digit;
     }
     return encoding;
 }
@@ -43,7 +45,7 @@ bool Soundex::isComplete(const std::string& encoding) const
 
 std::string Soundex::lastDigit(const std::string& encoding) const
 {
-    if (encoding.empty()) return "";
+    if (encoding.empty()) return NotADigit;
     return std::string(1, encoding.back());
 }
 
@@ -60,7 +62,7 @@ std::string Soundex::encodedDigit(char letter) const
     };
 
     auto it = encodings.find(letter);
-    return it == encodings.end() ? "" : it->second;
+    return it == encodings.end() ? NotADigit: it->second;
 }
 
 std::string Soundex::zeroPad(const std::string& word) const
