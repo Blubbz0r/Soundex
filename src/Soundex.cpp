@@ -15,6 +15,11 @@ std::string Soundex::upperFront(const std::string& string) const
 {
     return std::string(1, std::toupper(static_cast<unsigned char>(string.front())));
 }
+
+char Soundex::lower(char c) const
+{
+    return std::tolower(static_cast<unsigned char>(c));
+}
 std::string Soundex::head(const std::string& word) const
 {
     return word.substr(0, 1);
@@ -61,7 +66,7 @@ std::string Soundex::encodedDigit(char letter) const
         {'r', "6"}
     };
 
-    auto it = encodings.find(letter);
+    auto it = encodings.find(lower(letter));
     return it == encodings.end() ? NotADigit: it->second;
 }
 
