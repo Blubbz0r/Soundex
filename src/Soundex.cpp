@@ -8,7 +8,7 @@ static const std::string NotADigit = "*";
 
 std::string Soundex::encode(const std::string& word) const
 {
-    return zeroPad(upperFront(head(word)) + encodedDigits(tail(word)));
+    return zeroPad(upperFront(head(word)) + tail(encodedDigits(word)));
 }
 
 std::string Soundex::upperFront(const std::string& string) const
@@ -32,7 +32,7 @@ std::string Soundex::tail(const std::string& word) const
 
 std::string Soundex::encodedDigits(const std::string& word) const
 {
-    std::string encoding;
+    auto encoding = encodedDigit(word.front());
     for (auto letter : word)
     {
         if (isComplete(encoding)) break;
@@ -45,7 +45,7 @@ std::string Soundex::encodedDigits(const std::string& word) const
 
 bool Soundex::isComplete(const std::string& encoding) const
 {
-    return encoding.length() == MaxCodeLength - 1;
+    return encoding.length() == MaxCodeLength;
 }
 
 std::string Soundex::lastDigit(const std::string& encoding) const
