@@ -11,4 +11,4 @@ build_script:
 
 test_script:
   - cd c:\dev\soundex\build\lib
-  - cmd: SoundexTest.exe
+  - cmd: ctest -VV
