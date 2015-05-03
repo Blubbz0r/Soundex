@@ -2,16 +2,22 @@ project(Soundex)
 
 cmake_minimum_required(VERSION 2.8)
 
+# enable C++11 support
 if (${CMAKE_CXX_COMPILER_ID} MATCHES "GNU")
     set(CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} -std=c++0x)
 elseif (${CMAKE_CXX_COMPILER_ID} MATCHES "Clang")
     set(CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} -std=c++11)
 endif()
 
+# set output directories of executables and libraries
 set(OUTPUT_DIR ${CMAKE_BINARY_DIR}/lib)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${OUTPUT_DIR})
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${OUTPUT_DIR})
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${OUTPUT_DIR})
+# in case multiple configurations exist, we will still put the
+# executables and librariers into one common folder, instead
+# of e.g. Release or Debug subfolders.
+# The CMAKE_DEBUG_POSTFIX will take care of separating between the different configs.
 foreach(OUTPUTCONFIG ${CMAKE_CONFIGURATION_TYPES})
     string(TOUPPER ${OUTPUTCONFIG} OUTPUTCONFIG)
     set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_${OUTPUTCONFIG} ${OUTPUT_DIR})
@@ -25,7 +31,7 @@ set(CMAKE_DEBUG_POSTFIX "d")
 include(ExternalProject)
 
 # Set default ExternalProject root directory
-set_directory_properties(PROPERTIES EP_PREFIX ${PROJECT_SOURCE_DIR}/ext/gmock)
+set_directory_properties(PROPERTIES EP_PREFIX ${PROJECT_BINARY_DIR}/ext/gmock)
 
 # Add gmock
 ExternalProject_Add(
