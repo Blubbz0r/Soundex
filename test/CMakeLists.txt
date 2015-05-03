@@ -6,6 +6,7 @@ add_executable(${PROJECT_NAME}Test main.cpp SoundexTest.cpp CharUtilTest.cpp Str
 add_dependencies(${PROJECT_NAME}Test googlemock ${PROJECT_NAME})
 
 target_link_libraries(${PROJECT_NAME}Test
-                      ${CMAKE_LIBRARY_OUTPUT_DIRECTORY}/Soundex.lib
+                      debug ${CMAKE_LIBRARY_OUTPUT_DIRECTORY}/Soundex${CMAKE_DEBUG_POSTFIX}.lib
+                      optimized ${CMAKE_LIBRARY_OUTPUT_DIRECTORY}/Soundex.lib
                       debug ${binary_dir}/DebugLibs/${CMAKE_FIND_LIBRARY_PREFIXES}gmock${CMAKE_FIND_LIBRARY_SUFFIXES}
                       optimized ${binary_dir}/ReleaseLibs/${CMAKE_FIND_LIBRARY_PREFIXES}gmock${CMAKE_FIND_LIBRARY_SUFFIXES})
