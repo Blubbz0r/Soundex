@@ -10,5 +10,5 @@ build_script:
   - msbuild /m /p:Configuration=Release /p:Platform="Win32" Soundex.sln
 
 test_script:
-  - cd c:\dev\soundex\build\test
+  - cd c:\dev\soundex\build\lib
   - cmd: SoundexTest.exe
