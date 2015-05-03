@@ -15,4 +15,4 @@ target_link_libraries(${CURRENT_PROJECT_NAME}
                       debug ${binary_dir}/DebugLibs/${CMAKE_FIND_LIBRARY_PREFIXES}gmock${CMAKE_FIND_LIBRARY_SUFFIXES}
                       optimized ${binary_dir}/ReleaseLibs/${CMAKE_FIND_LIBRARY_PREFIXES}gmock${CMAKE_FIND_LIBRARY_SUFFIXES})
 
-add_test(unittest ${CURRENT_PROJECT_NAME})
+add_test(NAME unittest COMMAND $<TARGET_FILE:${CURRENT_PROJECT_NAME}>)
