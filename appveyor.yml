@@ -1,0 +1,14 @@
+version: 1.0.{build}
+
+clone_folder: c:\dev\soundex
+
+build_script:
+  - cd c:\dev\soundex
+  - md build
+  - cd build
+  - cmake -DCMAKE_CXX_FLAGS:STRING="/W4" -G"Visual Studio 12" ..
+  - msbuild /m /p:Configuration=Release /p:Platform="Win32" Soundex.sln
+
+test_script:
+  - cd c:\dev\soundex\build\test
+  - cmd: SoundexTest.exe
