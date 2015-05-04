@@ -10,11 +10,11 @@ build_script:
   - msbuild /m /p:Configuration=Release /p:Platform="Win32" Soundex.sln
 
 test_script:
-  - cd c:\dev\soundex\build
-  - ctest -VV -C Release
-  - cd lib
-  - SoundexUnitTests.exe --gtest_output=xml
   - ps: >-
-    # upload results to AppVeyor
-    $wc = New-Object 'System.Net.WebClient'
-    $wc.UploadFile("https://ci.appveyor.com/api/testresults/xunit/$($env:APPVEYOR_JOB_ID)", (Resolve-Path .\test_detail.xml))
+  cd c:\dev\soundex\build
+  ctest -VV -C Release
+  cd lib
+  SoundexUnitTests.exe --gtest_output=xml
+  # upload results to AppVeyor
+  $wc = New-Object 'System.Net.WebClient'
+  $wc.UploadFile("https://ci.appveyor.com/api/testresults/xunit/$($env:APPVEYOR_JOB_ID)", (Resolve-Path .\test_detail.xml))
